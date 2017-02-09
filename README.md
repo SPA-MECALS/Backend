@@ -1,4 +1,5 @@
 # Backend
+[![Build Status](https://travis-ci.org/SPA-MECALS/Backend.svg?branch=master)](https://travis-ci.org/SPA-MECALS/Backend)
 
 ## Contributing
 
@@ -21,4 +22,4 @@
 
 
 /!\ A Pull request will not be accepted if there is no tests with your changes.
-    All tests should pass on both your computer and Travis/Appveyor.
+    All tests should pass on both your computer and Travis.
