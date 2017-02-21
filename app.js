@@ -1,28 +1,20 @@
-var express = require('express')
-var app = express()
-var bodyParser = require('body-parser')
-app.use(bodyParser.json())
+const fs = require('fs');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const router = require('./route.js');
 
-function handlePost(req, res){
-    // sending back the body as a test
-    req.send(req.body);
-}
+// Port dedicated to backend server
+var port = process.env.PORT || 3000;
 
-app.post('/login', function (req, res) {
-  console.log('Log : Login event')
-  handlePost(req, res)
-})
+// Enable retrieving data from POST
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-app.post('/logout', function (req, res) {
-  console.log('Log : Log out event')
-  handlePost(req, res)
-})
+// bind router
+app.use(router);
 
-app.post('/roleChange', function (req, res) {
-  console.log('Log : Role change event')
-  handlePost(req, res)
-})
-
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+// Listen on PORT
+app.listen(port, function () {
+  console.log('listening on port ' + port);
 })
