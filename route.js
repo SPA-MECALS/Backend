@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Default behavior for any routes
 router.use(function(req, res, next) {
-    // do logging if necessary
+    // Authentication of users using NARMS server.
 
     // Ensure to pass through all routes.
     next();
