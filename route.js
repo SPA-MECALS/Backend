@@ -1,26 +1,30 @@
-const express = require('express')
-var middlewares = require('./middleware.js')
+const express = require('express');
+const middlewares = require('./middleware.js');
 
 // Our router
 const router = express.Router();
 
+// Default behavior for any routes
 router.use(function(req, res, next) {
-    // do logging
+    // do logging if necessary
+
+    // debug
     console.log(req.body)
-    next(); // make sure we go to the next routes and don't stop here
+
+    next();
 });
 
-router.get('/', function(req, res) {
-    res.json({ message: ':)' });
-});
+// Default middleware.
+router.get('/', middlewares.default);
 
-router.post('/login', function(req, res) {
-    res.json({ message: 'login event' });
-})
+// middleware handling login event.
+router.post('/login', middlewares.login);
 
-router.post('/logout', function(req, res) {
-    res.json({ message: 'logout event' });
-})
+// middleware handling logout event.
+router.post('/logout', middlewares.logout);
 
+// middleware handling roleChange event.
+router.post('/roleChange', middlewares.roleChange);
 
+// Export the router.
 module.exports = router;

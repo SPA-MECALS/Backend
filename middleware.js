@@ -1,19 +1,17 @@
 const config = require('./config.json');
 
-function test(req, res, next) {
+module.exports = {
+  default : function(req, res) {
     console.log(config.SAFAPS);
-    res.json({ message: ':)' });
-    next();
-}
-
-function test_login(req, res, next) {
-    res.json({ message: 'login event' });
-    next();
-}
-
-function test_logout(req, res, next) {
-    res.json({ message: 'logout event' });
-    next();
-}
-
-module.exports = test;
+    res.json({ message: ':)'});
+  },
+  login : function(req, res) {
+    res.json({ message: 'login event'});
+  },
+  logout : function(req, res) {
+    res.json({ message: 'logout event'});
+  },
+  roleChange : function(req, res) {
+    res.json({ message: 'roleChange event'});
+  }
+};
