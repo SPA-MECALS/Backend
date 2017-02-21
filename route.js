@@ -1,16 +1,14 @@
 const express = require('express');
 const middlewares = require('./middleware.js');
 
-// Our router
+// Our router with which we define each route.
 const router = express.Router();
 
 // Default behavior for any routes
 router.use(function(req, res, next) {
     // do logging if necessary
 
-    // debug
-    console.log(req.body)
-
+    // Ensure to pass through all routes.
     next();
 });
 
