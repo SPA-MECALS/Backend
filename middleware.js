@@ -3,7 +3,7 @@ const config = require('./config.json');
 const querystring = require('querystring');
 
 // Handler to forward https queries towards CALS/NARMS server.
-function post(url, req) {
+function forward_event(url, req, path) {
   // debug
   console.log(url);
 
@@ -18,6 +18,7 @@ function post(url, req) {
     host: url,
     port: 80,
     method: 'POST',
+    path: path,
     headers: {
        'Content-Type': 'application/x-www-form-urlencoded',
        'Content-Length': Buffer.byteLength(data)
@@ -42,20 +43,17 @@ module.exports = {
     res.json({ statusCode: 200 });
   },
   login : function(req, res) {
-    post(config.CALS, req);
-    post(config.NARMS, req);
+    forward_event(config.CALS, req, '/login');
     // need to handle properly result
     res.json({ message: 'login event'});
   },
   logout : function(req, res) {
-    post(config.CALS, req);
-    post(config.NARMS, req);
+    forward_event(config.CALS, req, '/logout');
     // need to handle properly result
     res.json({ message: 'logout event'});
   },
   roleChange : function(req, res) {
-    post(config.CALS, req);
-    post(config.NARMS, req);
+    forward_event(config.CALS, req, '/roleChange');
     // need to handle properly result
     res.json({ message: 'roleChange event'});
   }
