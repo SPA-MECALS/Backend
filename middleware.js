@@ -38,10 +38,33 @@ function forward_event(url, req, path) {
   request.end();
 }
 
+//
+// Work in Progress
+//
+function sign_handler(req,res) {
+  console.log('sign handler');
+}
+
 module.exports = {
   default : function(req, res) {
     res.json({ statusCode: 200 });
   },
+  //
+  // Work in Progress
+  //
+  signIn : function(req, res) {
+    sign_handler(req, res);
+    res.json({ statusCode: 200 });
+  },
+  //
+  // Work in Progress
+  //
+  signOut : function(req, res) {
+    sign_handler(req, res);
+    res.json({ statusCode: 200 });
+  },
+
+
   login : function(req, res) {
     forward_event(config.CALS, req, '/login');
     // need to handle properly result

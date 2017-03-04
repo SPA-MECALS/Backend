@@ -15,6 +15,14 @@ router.use(function(req, res, next) {
 // Default middleware.
 router.get('/', middlewares.default);
 
+//
+// Work in Progress
+//
+router.post('/signIn', middlewares.signIn);
+router.post('/signOut', middlewares.signOut);
+
+
+
 // middleware handling login event.
 router.post('/login', middlewares.login);
 
