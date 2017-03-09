@@ -43,17 +43,27 @@ module.exports = {
     res.json({ statusCode: 200 });
   },
   login : function(req, res) {
-    forward_event(config.CALS, req, '/login');
+    //console.log(req);
+    console.log("==== POST /login ====");
+    console.log(req.body);
+    console.log("======== END ========");
+    forward_event(config.NARMS, req.body, '/login');
     // need to handle properly result
     res.json({ message: 'login event'});
   },
   logout : function(req, res) {
-    forward_event(config.CALS, req, '/logout');
+    console.log("==== POST /logout ====");
+    console.log(req.body);
+    console.log("======== END ========");
+    forward_event(config.NARMS, req.body, '/logout');
     // need to handle properly result
     res.json({ message: 'logout event'});
   },
   roleChange : function(req, res) {
-    forward_event(config.CALS, req, '/roleChange');
+    console.log("==== POST /roleChange ====");
+    console.log(req.body);
+    console.log("======== END ========");
+    forward_event(config.NARMS, req.body, '/roleChange');
     // need to handle properly result
     res.json({ message: 'roleChange event'});
   }
