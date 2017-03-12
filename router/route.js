@@ -1,7 +1,5 @@
 const express = require('express');
 
-const middlewares = require('./middleware/middleware.js');
-
 // Our router with which we define each route.
 const router = express.Router();
 
@@ -14,16 +12,16 @@ router.use(function(req, res, next) {
 });
 
 // Default middleware.
-router.get('/', middlewares.default);
+//router.get('/', middlewares.default);
 
 // middleware handling login event.
-router.post('/login', middlewares.login);
+router.post('/login', require('./middleware/login'));
 
 // middleware handling logout event.
-router.post('/logout', middlewares.logout);
+router.post('/logout', require('./middleware/logout'));
 
 // middleware handling roleChange event.
-router.post('/roleChange', middlewares.roleChange);
+router.post('/roleChange', require('./middleware/roleChange'));
 
 // Export the router.
 module.exports = router;
