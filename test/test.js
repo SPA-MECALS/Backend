@@ -6,17 +6,6 @@ const should = chai.should();
 
 chai.use(chaiHTTP);
 
-describe('/GET', () => {
-      it('it should GET 200 as statusCode', (done) => {
-        chai.request(server)
-            .get('/')
-            .end((err, res) => {
-                res.should.have.status(200);
-              done();
-            });
-      });
-  });
-
 describe('/login/', () => {
       it('it should login as an employee', (done) => {
         chai.request(server)
