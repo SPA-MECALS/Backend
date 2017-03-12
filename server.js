@@ -1,8 +1,10 @@
 const fs = require('fs');
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
-const router = require('./route.js');
+
+const router = require('./router/route.js');
+
+const app = express();
 
 // Port dedicated to backend server
 var port = process.env.PORT || 3000;
