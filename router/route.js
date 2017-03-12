@@ -11,9 +11,6 @@ router.use(function(req, res, next) {
     next();
 });
 
-// Default middleware.
-//router.get('/', middlewares.default);
-
 // middleware handling login event.
 router.post('/login', require('./middleware/login'));
 
