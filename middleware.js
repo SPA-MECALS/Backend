@@ -1,41 +1,31 @@
-const http = require('http');
-const config = require('./config.json');
+const request = require('request');
 const querystring = require('querystring');
+const config = require('./config.json');
 
-// Handler to forward https queries towards CALS/NARMS server.
-function forward_event(url, req, path) {
+// Handler to forward http queries towards NARMS server.
+function forwardEvent(url, body, path, callback) {
   // debug
-  console.log(url);
-
-  // Data to forward to CALS/NARMS
-  var data = querystring.stringify({
-    // need to replace with the content of the HTTP query
-    test: 'test :)'
-  });
 
   // HTTP request options
   var options = {
-    host: url,
-    port: 80,
     method: 'POST',
-    path: path,
-    headers: {
-       'Content-Type': 'application/x-www-form-urlencoded',
-       'Content-Length': Buffer.byteLength(data)
-   }
+    uri: 'http://193.10.30.126/api/cals/auth/login/',
+    body: body,
+    json: true
   };
 
-  // Build the request
-  var request = http.request(options, function(res) {
-    res.setEncoding('utf8');
-    res.on('data', function(chunk) {
-      console.log('body ' + chunk);
-    });
-  });
-
   // Post the data
-  request.write(data);
-  request.end();
+  request(options, function (error, response, body) {
+      var res = {
+        body: body,
+        statusCode: response.statusCode
+      };
+      if (body.success === "False") {
+        res.body = {};
+        res.statusCode = 500;
+      }
+      callback(res);
+    });
 }
 
 module.exports = {
@@ -47,15 +37,17 @@ module.exports = {
     console.log("==== POST /login ====");
     console.log(req.body);
     console.log("======== END ========");
-    forward_event(config.NARMS, req.body, '/login');
+    forwardEvent(config.NARMS, req.body, 'auth/login/', function(resp){
+      res.status(resp.statusCode)
+         .json(resp.body.worker_profiles);
+    });
     // need to handle properly result
-    res.json({ message: 'login event'});
   },
   logout : function(req, res) {
     console.log("==== POST /logout ====");
     console.log(req.body);
     console.log("======== END ========");
-    forward_event(config.NARMS, req.body, '/logout');
+    forwardEvent(config.NARMS, req.body, 'logout/');
     // need to handle properly result
     res.json({ message: 'logout event'});
   },
@@ -63,7 +55,7 @@ module.exports = {
     console.log("==== POST /roleChange ====");
     console.log(req.body);
     console.log("======== END ========");
-    forward_event(config.NARMS, req.body, '/roleChange');
+    forwardEvent(config.NARMS, req.body, 'roleChange/');
     // need to handle properly result
     res.json({ message: 'roleChange event'});
   }

@@ -16,3 +16,18 @@ describe('/GET', () => {
             });
       });
   });
+
+describe('/login/', () => {
+      it('it should login as an employee', (done) => {
+        chai.request(server)
+            .post('/login/')
+            .send({
+              email: 'jdeuf@gmail.com',
+              password: 'jdeuf'
+            })
+            .end((err, res) => {
+                res.should.have.status(200);
+              done();
+            });
+      });
+  });
