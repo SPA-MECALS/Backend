@@ -7,4 +7,5 @@ env:
     - "FTP_USER=travis_deploy"
     - "FTP_PASSWORD=tr4v1sd3pl0y"
 after_success:
-    "curl -v --ftp-create-dirs -T server.js -u $FTP_USER:$FTP_PASSWORD ftp://193.10.30.169 --connect-timeout 60"
+    "tar -cvf deploy.tar *"
+    "curl -v --ftp-create-dirs -T deploy.tar -u $FTP_USER:$FTP_PASSWORD ftp://193.10.30.169/auto_deploy --connect-timeout 60"
