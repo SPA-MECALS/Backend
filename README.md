@@ -1,6 +1,20 @@
 # Backend
 [![Build Status](https://travis-ci.org/SPA-MECALS/Backend.svg?branch=master)](https://travis-ci.org/SPA-MECALS/Backend)
 
+## Installation
+
+```bash
+# Get it from GitHub
+git clone https://github.com/SPA-MECALS/Backend.git
+cd Backend
+
+# Install dependencies
+npm install
+
+# Run the server
+npm start
+```
+
 ## Contributing
 
 1. fork the repository
