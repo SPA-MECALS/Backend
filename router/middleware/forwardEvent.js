@@ -7,7 +7,7 @@ module.exports = function(url, body, path, callback) {
   // HTTP request options
   var options = {
     method: 'POST',
-    uri: 'http://193.10.30.126/api/cals/auth/login/',
+    uri: url + path,
     body: body,
     json: true
   };
