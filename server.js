@@ -7,7 +7,7 @@ const router = require('./router/route.js');
 const app = express();
 
 // Port dedicated to backend server
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 80;
 
 // Enable retrieving data from POST
 app.use(bodyParser.urlencoded({ extended: true }));
