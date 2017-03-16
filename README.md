@@ -1,3 +1,8 @@
+# Description
+This is a middleware backend that links the MECALS android application to NARMS. 
+It is written in ´node.js´ and is uses ´express´, 
+you can find the documentation of all available routs in the following link [here]( https://spa-mecals.github.io/slate/)
+
 # Backend
 [![Build Status](https://travis-ci.org/SPA-MECALS/Backend.svg?branch=master)](https://travis-ci.org/SPA-MECALS/Backend)
 
