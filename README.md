@@ -4,7 +4,7 @@
 ## Description
 This is a middleware backend that links the MECALS android application to NARMS. 
 It is written in `node.js` and is uses `express`, 
-you can find the documentation of all available routs in the following link [here]( https://spa-mecals.github.io/slate/)
+you can find the documentation of all available routes [here]( https://spa-mecals.github.io/slate/)
 
 
 ## Installation
@@ -16,6 +16,9 @@ cd Backend
 
 # Install dependencies
 npm install
+
+# (Optional) Change the listening port by adding an env variable
+export PORT=8080
 
 # Run the server
 npm start
