@@ -20,5 +20,8 @@ router.post('/logout', require('./middleware/logout'));
 // middleware handling roleChange event.
 router.post('/roleChange', require('./middleware/roleChange'));
 
+// middleware handling workstations event.
+router.get('/workstations', require('./middleware/workstations'));
+
 // Export the router.
 module.exports = router;
