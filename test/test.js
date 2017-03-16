@@ -36,3 +36,14 @@ describe('/logout/', () => {
         });
   });
 });
+
+describe('/workstations/', () => {
+  it('it should GET all workstations', (done) => {
+    chai.request(server)
+        .get('/workstations/')
+        .end((err, res) => {
+          res.should.have.status(200);
+          done();
+        });
+  });
+});
